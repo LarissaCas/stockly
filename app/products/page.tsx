@@ -1,11 +1,10 @@
-import { PlusIcon } from "lucide-react";
-import { Button } from "../_components/ui/button";
-import { db } from "../_lib/prisma";
 import { DataTable } from "../_components/ui/data-table";
 import { productTableColumns } from "./_components/table-columns";
+import { cachedGetProducts } from "../_data-access/products/get-products";
+import { AddProductButton } from "./_components/add-product-button";
 
 const ProductsPage = async () => {
-  const products = await db.product.findMany({});
+  const products = await cachedGetProducts();
   return (
     <div className="space-y8 w-full p-8">
       <div className="mb-5 flex w-full items-center justify-between">
@@ -13,12 +12,12 @@ const ProductsPage = async () => {
           <span className="text-xs font-semibold">Gestão de Produtos</span>
           <h2 className="mb-2 text-xl font-semibold">Produtos</h2>
         </div>
-        <Button className="gap-2">
-          <PlusIcon size={20} />
-          Novo produto
-        </Button>
+        <AddProductButton />
       </div>
-      <DataTable columns={productTableColumns} data={products} />
+      <DataTable
+        columns={productTableColumns}
+        data={JSON.parse(JSON.stringify(products))}
+      />
     </div>
   );
 };
