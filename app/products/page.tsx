@@ -1,10 +1,10 @@
 import { DataTable } from "../_components/ui/data-table";
 import { productTableColumns } from "./_components/table-columns";
-import { cachedGetProducts } from "../_data-access/products/get-products";
+import { getProducts } from "../_data-access/products/get-products";
 import { AddProductButton } from "./_components/add-product-button";
 
 const ProductsPage = async () => {
-  const products = await cachedGetProducts();
+  const products = await getProducts();
   return (
     <div className="space-y8 w-full p-8">
       <div className="mb-5 flex w-full items-center justify-between">
