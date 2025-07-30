@@ -21,7 +21,6 @@ const DeleteDialogProductContent = ({
     try {
       await DeleteProduct({ id: productId });
       toast.success("Produto excluído com sucesso.");
-      console.log("excluido");
     } catch (error) {
       console.error(error);
       toast.error("Ocorreu um erro ao excluir o produto.");
