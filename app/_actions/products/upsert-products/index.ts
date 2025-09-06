@@ -3,7 +3,6 @@
 import { db } from "@/app/_lib/prisma";
 import { revalidatePath } from "next/cache";
 import { upsertProductSchema, UpsertProductSchema } from "./schema";
-import { da } from "zod/v4/locales";
 
 export const upsertProduct = async (data: UpsertProductSchema) => {
   upsertProductSchema.parse(data);
